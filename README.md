@@ -2,4 +2,4 @@
 [![Actions Status](https://github.com/vzletit/frontend-project-lvl3/workflows/hexlet-check/badge.svg)](https://github.com/vzletit/frontend-project-lvl3/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b3df8a3e8014f27b583f/maintainability)](https://codeclimate.com/github/vzletit/frontend-project-lvl3/maintainability)
 
-Demo: https://frontend-project-lvl3-19dl0np1g-vzletit.vercel.app/
+Demo: https://frontend-project-lvl3-pink.vercel.app/
