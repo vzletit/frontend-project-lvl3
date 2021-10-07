@@ -1,9 +1,9 @@
 {
   "name": "frontend-project-lvl3",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/vzletit/frontend-project-lvl3/workflows/hexlet-check/badge.svg)](https://github.com/vzletit/frontend-project-lvl3/actions)",
-  "private": true,
-  "scripts": {
+  "description": "[![Actions Status](https://github.com/vzletit/frontend-project-lvl3/workflows/hexlet-check/badge.svg)](https://github.com/vzletit/frontend-project-lvl3/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/b3df8a3e8014f27b583f/maintainability)](https://codeclimate.com/github/vzletit/frontend-project-lvl3/maintainability)",
+  "main": "index.js",
+   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV='production' webpack",
     "start": "webpack-dev-server"
@@ -12,26 +12,26 @@
     "type": "git",
     "url": "git+https://github.com/vzletit/frontend-project-lvl3.git"
   },
-  "author": "",
+  "author": "Dmitry Agurkov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vzletit/frontend-project-lvl3/issues"
   },
   "homepage": "https://github.com/vzletit/frontend-project-lvl3#readme",
   "devDependencies": {
-    "css-loader": "^6.2.0",
+    "css-loader": "^6.3.0",
     "eslint": "^7.32.0",
     "html-webpack-plugin": "^5.3.2",
     "prettier": "2.4.1",
-    "style-loader": "^3.2.1",
-    "webpack": "^5.52.1",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.3.0"
+    "style-loader": "^3.3.0",
+    "webpack": "^5.58.0",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
-    "bootstrap": "^5.1.1",
-    "lodash": "^4.17.21",
+    "bootstrap": "^5.1.2",
+    "i18next": "^21.2.4",
     "on-change": "^4.0.0",
-    "yup": "^0.32.9"
+    "yup": "^0.18.3"
   }
 }
