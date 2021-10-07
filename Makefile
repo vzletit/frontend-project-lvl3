@@ -14,3 +14,6 @@ test:
 lint:
 	npx eslint .
 
+start:
+	webpack-dev-server
+

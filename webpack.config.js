@@ -20,11 +20,16 @@ module.exports = {
             },
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
+    plugins: [
+        new HtmlWebpackPlugin({
         title: 'Hexlet Project 3 (RSS aggregator)',
         template: "./index.html",
         filename: "index.html",
         inject: "body"
-    })],
+    }),
 
+    ],
+    devServer: {
+        open: true
+    }
 };

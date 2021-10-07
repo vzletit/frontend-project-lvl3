@@ -1,22 +1,58 @@
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import _ from 'lodash';
-import './style.css';
-//import Icon from './icon.png';
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import * as yup from "yup";
+//import _ from "lodash";
+import "./style.css";
+import view from "./view.js";
+//import app from './app.js';
 
-function component() {
-    const element = document.createElement('div');
+const main = () => {
+  const elements = {
+    form: document.querySelector("form"),
+    input: document.querySelector("input"),
+    submitBtn: document.querySelector("button"),
+  };
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('col');
+  const stateInit = {
+    form: {
+      url: "",
+    },
+    errors: {
+      notValid: "URL не корректный.",
+      notUniq: "Такой URL уже есть.",
+    },
+    isUrlValid: "",
+    isUrlUnique: "",
+    currentState: "Filling",
 
-    const myIcon = new Image();
-    myIcon.src = Icon;
+    urls: [],
+  };
 
-    element.appendChild(myIcon);
+  const state = view(stateInit, elements);
 
+  let schema = yup.object().shape({
+    url: yup.string().min(1, state.errors.notValid).url(state.errors.notValid),
+  });
 
-    return element;
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    state.currentState = "Validating";
+    state.form.url = elements.input.value;
+    schema
+      .isValid(state.form)
+      .then((valid) => (state.isUrlValid = valid)) // t/f Valid
+      .then(() => {
+        state.isUrlUnique = state.urls.indexOf(state.form.url) === -1;
+        if (state.isUrlUnique && state.isUrlValid) {
+          state.urls.push(state.form.url);
+          state.currentState = "Filling";
+        }
+      }); // t/f Uniq
 
-document.body.appendChild(component());
+    console.log(state);
+  };
+
+  elements.submitBtn.addEventListener("click", handleSubmit);
+};
+
+main();
