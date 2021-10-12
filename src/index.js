@@ -8,4 +8,4 @@ i18nInstance.init({
   lng: 'ru',
   debug: false,
   resources,
-}).then(app(i18nInstance));
+}).then(app(i18nInstance, {proxy:'https://hexlet-allorigins.herokuapp.com/get?disableCache=true&url='}));
