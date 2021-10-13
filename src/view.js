@@ -114,10 +114,12 @@ export default (state, elements, i18nInstance) => {
             break;
 
           case "Rendering":
-            clearAndFocus();
             renderFeeds();
             renderPosts();
+            break;
 
+          case "Updating":
+            resetMsg();
             break;
         }
         break;

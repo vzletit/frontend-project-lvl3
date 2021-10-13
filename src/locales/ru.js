@@ -3,11 +3,12 @@ export default {
     errors: {
       notValidUrl: "Некорректный URL.",
       notValidXml: "Неверный формат данных.",
-      serverNotResonding: "Сервер не отвечает.",
+      serverNotResponding: "Сервер не отвечает.",
       serverResponceError: "Сервер вернул ошибку.",
       networkError: "Ошибка сети.",
       notUniq: "Такой фид уже есть.",
       empty: "Это обязательное поле.",
+      updateError: "Не удалось обновить {{feedUrl}} из-за ошибки сети."
     },
     loadSuccess: "Фид успешно добавлен",
     posts: "Посты",
