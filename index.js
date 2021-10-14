@@ -1,6 +1,6 @@
-import app from "./app.js";
+import app from "./src/app.js";
 import i18n from "i18next";
-import resources from "./locales/index.js";
+import resources from "./src/locales";
 
 
 const i18nInstance = i18n.createInstance();

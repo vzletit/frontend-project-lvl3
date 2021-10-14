@@ -131,7 +131,7 @@ export default (state, elements, i18nInstance) => {
             break;
 
           case "Modal":
-            renderModal(state.modalPostId);
+            renderModal();
 
             break;
 
