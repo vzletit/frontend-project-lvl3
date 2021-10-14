@@ -1,6 +1,4 @@
 import onChange from "on-change";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.js";
 import { Modal } from "bootstrap";
 
 export default (state, elements, i18nInstance) => {
