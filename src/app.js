@@ -7,15 +7,15 @@ import { uniqueId, differenceBy } from "lodash";
 export default (i18nInstance, config) => {
   const elements = {
     contentSection: document.querySelector('section#contentSection'),
-    form: document.querySelector("form"),
-    input: document.querySelector("input"),
-    submitBtn: document.querySelector("button[type='submit']"),
-    posts: document.querySelector("#posts"),
-    feeds: document.querySelector("#feeds"),
-    modal: document.querySelector("#modal"),
-    modalTitle: document.querySelector("#modalTitle"),
-    modalDescription: document.querySelector("#modalDescription"),
-    modalCloseBtn: document.querySelector("button#modalCloseBtn"),
+    form: document.querySelector('form'),
+    input: document.querySelector('input'),
+    submitBtn: document.querySelector('button[type="submit"]'),
+    posts: document.querySelector('#posts'),
+    feeds: document.querySelector('#feeds'),
+    modal: document.querySelector('#modal'),
+    modalTitle: document.querySelector('#modalTitle'),
+    modalDescription: document.querySelector('#modalDescription'),
+    modalCloseBtn: document.querySelector('button#modalCloseBtn'),
   };
 
   const stateInit = {
