@@ -10,9 +10,10 @@ export default {
       empty: "Это обязательное поле.",
       updateError: "Не удалось обновить {{feedUrl}} из-за ошибки сети."
     },
-    loadSuccess: "Фид успешно добавлен",
+    loadSuccess: "Фид успешно добавлен.",
     posts: "Посты",
     feeds: "Фиды",
     view: "Просмотр",
+    close: "Закрыть",
   },
 };

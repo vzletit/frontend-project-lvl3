@@ -1,5 +1,3 @@
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import * as yup from "yup";
 import "./style.css";
 import view from "./view.js";
@@ -10,12 +8,23 @@ export default (i18nInstance, config) => {
   const elements = {
     form: document.querySelector("form"),
     input: document.querySelector("input"),
-    submitBtn: document.querySelector("button"),
+    submitBtn: document.querySelector("button[type='submit']"),
     posts: document.querySelector("#posts"),
     feeds: document.querySelector("#feeds"),
+    modal: document.querySelector("#modal"),
+    modalTitle: document.querySelector("#modalTitle"),
+    modalDescription: document.querySelector("#modalDescription"),
+    modalCloseBtn: document.querySelector("button#modalCloseBtn"),
   };
+
   const stateInit = {
     config: config,
+    modal: {
+      postId: "",
+      title: "",
+      description: "",
+    },
+
     form: {
       url: "",
     },
@@ -68,10 +77,13 @@ export default (i18nInstance, config) => {
     posts.forEach((post) => {
       const postTitle = post.querySelector("title");
       const postUrl = post.querySelector("link");
+      const postDescription = post.querySelector("description");
       const postObj = {
+        description: postDescription.textContent,
         feedId: feedId,
         title: postTitle.textContent,
         url: postUrl.textContent,
+        visited: false,
       };
       resultArr.push(postObj);
     });
@@ -132,11 +144,9 @@ export default (i18nInstance, config) => {
       .then((valid) => {
         state.error = "";
 
-        state.currentState = "Retrieving";
         axios
           .get(state.config.proxy + valid.url)
           .then((response) => {
-            state.currentState = "Parsing";
             const parsedXMLData = parseXML(
               state.config.proxy !== "" ? response.data.contents : response.data
             );
@@ -144,7 +154,8 @@ export default (i18nInstance, config) => {
             if (parsedXMLData.querySelector("parsererror") != null) {
               state.error = i18nInstance.t("errors.notValidXml");
               return;
-            } else { // on successful parsing:
+            } else {
+              // on successful parsing:
               const newFeed = getFeedInfo(parsedXMLData, valid.url);
               newFeed.id = uniqueId("feed");
               state.feeds.push(newFeed);
@@ -176,6 +187,25 @@ export default (i18nInstance, config) => {
       })
       .catch((err) => (state.error = err.errors[0])); // url validation errors
   };
+  const handleModal = (e) => {
+    e.preventDefault;
+
+    state.currentState = "Filling";
+
+    if (e.target.id === "modalShowBtn") {
+      state.modal.postId = e.target.dataset.id; // needed to change link font-weight NOW.
+
+      const currentPostIndex = state.posts.findIndex(
+        (post) => post.id === state.modal.postId
+      );
+      state.modal.title = state.posts[currentPostIndex].title;
+      state.modal.description = state.posts[currentPostIndex].description;
+      state.posts[currentPostIndex].visited = true;
+
+      state.currentState = "Modal";
+    }
+  };
 
   elements.submitBtn.addEventListener("click", handleSubmit);
+  elements.posts.addEventListener("click", handleModal);
 };
