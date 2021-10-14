@@ -6,6 +6,7 @@ import { uniqueId, differenceBy } from "lodash";
 
 export default (i18nInstance, config) => {
   const elements = {
+    contentSection: document.querySelector('section#contentSection'),
     form: document.querySelector("form"),
     input: document.querySelector("input"),
     submitBtn: document.querySelector("button[type='submit']"),
@@ -204,5 +205,6 @@ export default (i18nInstance, config) => {
   };
 
   elements.submitBtn.addEventListener("click", handleSubmit);
-  elements.posts.addEventListener("click", handleModal);
+  if (elements.posts) {
+  elements.contentSection.addEventListener("click", handleModal); }
 };
