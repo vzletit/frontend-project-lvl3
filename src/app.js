@@ -101,9 +101,7 @@ export default (i18nInstance, config) => {
         axios
           .get(state.config.proxy + feed.url)
           .then((response) => {
-            const parsedUpdatedFeed = parseXML(
-              state.config.proxy !== "" ? response.data.contents : response.data
-            );
+            const parsedUpdatedFeed = parseXML(response.data.contents);
             const updatedPostsList = getPostsFromParsedFeed(
               parsedUpdatedFeed,
               feed.id
@@ -147,9 +145,8 @@ export default (i18nInstance, config) => {
         axios
           .get(state.config.proxy + valid.url)
           .then((response) => {
-            const parsedXMLData = parseXML(
-              state.config.proxy !== "" ? response.data.contents : response.data
-            );
+            const parsedXMLData = parseXML(response.data.contents);
+
             // handle parsing error:
             if (parsedXMLData.querySelector("parsererror") != null) {
               state.error = i18nInstance.t("errors.notValidXml");

@@ -1,16 +1,16 @@
 export default {
   translation: {
     errors: {
-      notValidUrl: "Некорректный URL.",
-      notValidXml: "Неверный формат данных.",
-      serverNotResponding: "Сервер не отвечает.",
-      serverResponceError: "Сервер вернул ошибку.",
-      networkError: "Ошибка сети.",
-      notUniq: "Такой фид уже есть.",
-      empty: "Это обязательное поле.",
+      notValidUrl: "Ссылка должна быть валидным URL",
+      notValidXml: "Ресурс не содержит валидный RSS",
+      serverNotResponding: "Ошибка сети",
+      serverResponceError: "Ошибка сети",
+      networkError: "Ошибка сети",
+      notUniq: "RSS уже существует",
+      empty: "Не должно быть пустым",
       updateError: "Не удалось обновить {{feedUrl}} из-за ошибки сети."
     },
-    loadSuccess: "Фид успешно добавлен.",
+    loadSuccess: "RSS успешно загружен",
     posts: "Посты",
     feeds: "Фиды",
     view: "Просмотр",
