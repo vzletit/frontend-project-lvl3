@@ -15,7 +15,6 @@ export default (state, elements, i18nInstance) => {
     let modal = new Modal(document.getElementById("modal"));
     modal.show();
   };
-
   const renderFeeds = () => {
     const feedsHeader = `
 <div class="card border-0" id="feeds">
@@ -79,29 +78,28 @@ export default (state, elements, i18nInstance) => {
 
     elements.posts.append(postsUl);
   };
-  const resetMsg = () => {
+  const clearFeedbackMsg = () => {
     const p = document.getElementById("feedback");
     if (p) {
       p.remove();
     }
     elements.input.classList.remove("is-invalid");
   };
-  const clearAndFocus = () => {
+  const clearInputAndFocus = () => {
     elements.input.value = "";
     elements.input.focus();
   };
-  const renderError = (errorMsg) => {
-    resetMsg();
+  const renderErrorFeedback = (errorMsg) => {
+     clearFeedbackMsg();
     elements.input.classList.add("is-invalid");
     const p = document.createElement("p");
 
     p.classList.add("position-absolute", "small", "text-danger");
     p.setAttribute("id", "feedback");
-    p.textContent = errorMsg;
+    p.textContent = i18nInstance.t(errorMsg);
     elements.input.after(p);
   };
-  const renderMsg = (msg) => {
-    resetMsg();
+  const renderSuccessFeedback = (msg) => {
     const p = document.createElement("p");
     p.classList.add("position-absolute", "small", "text-success");
     p.setAttribute("id", "feedback");
@@ -114,13 +112,13 @@ export default (state, elements, i18nInstance) => {
       case "currentState":
         switch (state.currentState) {
           case "Filling":
-            resetMsg();
-            clearAndFocus();
+            clearFeedbackMsg();
+            clearInputAndFocus();
             break;
 
           case "Added":
-            clearAndFocus();
-            renderMsg(i18nInstance.t("loadSuccess"));
+            clearInputAndFocus();
+            renderSuccessFeedback(i18nInstance.t("loadSuccess"));
             break;
 
           case "Rendering":
@@ -134,17 +132,15 @@ export default (state, elements, i18nInstance) => {
             break;
 
           case "Updating":
-            resetMsg();
+            clearFeedbackMsg();
             break;
         }
         break;
 
       case "error": // state.error
-        if (value === "") {
-          resetMsg();
-        } else {
-          renderError(value);
-        }
+        clearFeedbackMsg();
+        renderErrorFeedback(value);
+
         break;
     }
   };
