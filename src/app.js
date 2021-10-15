@@ -18,7 +18,7 @@ export default () => {
 
   const elements = {
     input: document.querySelector("input"),
-    submitBtn: document.querySelector('button[type="submit"]'),
+    submitBtn: document.querySelector("button[type=submit]"),
     posts: document.querySelector("#posts"),
     feeds: document.querySelector("#feeds"),
     modalTitle: document.querySelector("#modalTitle"),
