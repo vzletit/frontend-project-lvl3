@@ -71,7 +71,8 @@ export default (state, elements, i18nInstance) => {
 
 `;
       const fontWeight = post.visited === false ? "fw-bold" : "fw-normal";
-      postLi.classList.add(fontWeight);
+      const link = postLi.querySelector('a');
+      link.classList.add(fontWeight);
       postsUl.append(postLi);
     });
 
