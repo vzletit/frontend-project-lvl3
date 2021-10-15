@@ -3,8 +3,6 @@ export default {
     errors: {
       notValidUrl: "Ссылка должна быть валидным URL",
       notValidXml: "Ресурс не содержит валидный RSS",
-      serverNotResponding: "Ошибка сети",
-      serverResponceError: "Ошибка сети",
       networkError: "Ошибка сети",
       notUniq: "RSS уже существует",
       empty: "Не должно быть пустым",

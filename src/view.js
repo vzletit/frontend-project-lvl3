@@ -1,11 +1,9 @@
 import onChange from "on-change";
-import {Modal} from 'bootstrap';
+import { Modal } from "bootstrap";
 //import "bootstrap/dist/js/bootstrap.js";
 
-
-
 export default (state, elements, i18nInstance) => {
-  const renderModal = () => {
+  const handleModal = () => {
     elements.modalTitle.textContent = state.modal.title;
     elements.modalDescription.textContent = state.modal.description;
     elements.modalCloseBtn.textContent = i18nInstance.t("close");
@@ -82,6 +80,11 @@ export default (state, elements, i18nInstance) => {
     elements.posts.append(postsUl);
   };
   const clearFeedbackMsg = () => {
+    elements.addBtn.disabled = false;
+    elements.input.removeAttribute("readonly", "readonly");
+
+
+
     const p = document.getElementById("feedback");
     if (p) {
       p.remove();
@@ -93,7 +96,8 @@ export default (state, elements, i18nInstance) => {
     elements.input.focus();
   };
   const renderErrorFeedback = (errorMsg) => {
-     clearFeedbackMsg();
+    clearFeedbackMsg();
+
     elements.input.classList.add("is-invalid");
     const p = document.createElement("p");
 
@@ -110,6 +114,25 @@ export default (state, elements, i18nInstance) => {
     elements.input.after(p);
   };
 
+const hangleLoading = () => {
+elements.input.setAttribute("readonly", "readonly");
+elements.addBtn.disabled = true;
+}
+
+const handleAdded = () => {
+  clearFeedbackMsg();
+  elements.input.removeAttribute("readonly", "readonly");
+  elements.addBtn.disabled = false;
+
+  clearInputAndFocus();
+  renderSuccessFeedback(i18nInstance.t("loadSuccess"));
+}
+
+const handleRendering = () => {
+  renderFeeds();
+  renderPosts();
+}
+
   const goRenderSmth = (path, value) => {
     switch (path) {
       case "currentState":
@@ -119,24 +142,31 @@ export default (state, elements, i18nInstance) => {
             clearInputAndFocus();
             break;
 
+            case "Validating":
+              clearFeedbackMsg();
+              break;
+
+          case "Loading":
+            hangleLoading();
+            break;
+
           case "Added":
-            clearInputAndFocus();
-            renderSuccessFeedback(i18nInstance.t("loadSuccess"));
+            handleAdded();
             break;
 
           case "Rendering":
-            renderFeeds();
-            renderPosts();
+            handleRendering();
+           
             break;
 
           case "Modal":
-            renderModal();
-
+            handleModal();
             break;
 
-          case "Updating":
-            clearFeedbackMsg();
-            break;
+            case "Updating":
+              
+              break;
+         
         }
         break;
 

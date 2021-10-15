@@ -4,7 +4,8 @@ export default (xmlData, feedUrl, feedId) => {
 
   // handle parsing error:
   if (parsedXMLData.querySelector("parsererror") != null) {
-    throw new Error();
+    throw new Error('errors.notValidXml');
+  
   } else {
     const feedTitle = parsedXMLData.querySelector("title");
     const feedDescr = parsedXMLData.querySelector("description");

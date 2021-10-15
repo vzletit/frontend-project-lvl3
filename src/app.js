@@ -21,6 +21,7 @@ export default () => {
 
   const elements = {
     form: document.querySelector("form"),
+    addBtn: document.querySelector('button[type=submit]'),
     input: document.querySelector("input"),
     posts: document.querySelector("#posts"),
     feeds: document.querySelector("#feeds"),
@@ -48,29 +49,32 @@ export default () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     state.form.url = elements.input.value;
-
-    validate(state.form, state.feeds, i18nInstance)
+    state.error = "";
+    state.currentstate = "Validating";
+    validate(state.form, state.feeds)
       .then((valid) => {
-        state.error = "";
-
-        load(valid.url).then((response) => {
+              state.currentState = "Loading";
+        return load(valid.url)})
+        .then((response, validUrl) => {
           const newFeedId = uniqueId("feed");
-          const newFeed = parse(response, valid.url, newFeedId);
-
+          return parse(response, state.form.url, newFeedId);})
+          .then((newFeed) => {
           state.feeds.push(newFeed.feed);
           state.posts = [...state.posts, ...newFeed.posts];
           state.posts.forEach((item) => (item.id = uniqueId("post")));
 
           state.currentState = "Added";
           state.currentState = "Rendering";
-          updatePosts(state);
-        });
+          
+        
       })
       .catch((err) => {
         state.error = err.message;
         state.currentState = "Error";
       });
   };
+  updatePosts(state);
+
   const handleModal = (e) => {
     e.preventDefault;
 

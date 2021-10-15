@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export default (objToValidate, arrayToSearchIn, i18nInstance) => {
+export default (objToValidate, arrayToSearchIn) => {
 
 let schema = yup.object().shape({
     url: yup
@@ -9,7 +9,7 @@ let schema = yup.object().shape({
             // We cannot use notOneOf with variable (dynamical) array. See: https://github.com/jquense/yup/issues/337
             // So, we use .test with NO-ARROW function inside.
             "Check for uniqueness",
-            i18nInstance.t("errors.notUniq"),
+            "errors.notUniq",
             function test(value) {
                 let result = true;
                 this.options.context.forEach((item) => {
@@ -28,6 +28,6 @@ let schema = yup.object().shape({
     return schema
         .validate(objToValidate, {context: arrayToSearchIn})
         .catch((err) => {
-             throw new Error(err.message)}); // url validation errors
+             throw new Error(err.message)});
 
 };
