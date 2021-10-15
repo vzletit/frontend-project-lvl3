@@ -39,33 +39,18 @@ export default (state, elements, i18nInstance) => {
   };
   const renderPosts = () => {
     const postsHeader = `
-<div class="card border-0">
-<div class="card-body"><h2 class="card-title h4">${i18nInstance.t('posts')}</h2></div>
-</div>`;
+<div class="card border-0"><div class="card-body"><h2 class="card-title h4">${i18nInstance.t('posts')}</h2></div></div>`;
 
     const postsUl = document.createElement('ul');
     postsUl.classList.add('list-group', 'border-0', 'rounded-0');
 
     state.posts.forEach((post) => {
       const postLi = document.createElement('li');
-      postLi.classList.add(
-        'list-group-item',
-        'd-flex',
-        'justify-content-between',
-        'align-items-start',
-        'border-0',
-        'border-end-0',
-      );
+      postLi.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start',
+        'border-0', 'border-end-0');
 
-      postLi.innerHTML = `
-             <a href="${post.url}"  id="${post.id}" target="_blank" rel="noopener noreferrer">${
-  post.title
-}</a>
-            <button type="button" id="modalShowBtn" class="btn btn-outline-primary btn-sm" data-id="${
-  post.id
-}"  data-bs-target="#modal">${i18nInstance.t('view')}</button>
-
-`;
+      postLi.innerHTML = `<a href="${post.url}"  id="${post.id}" target="_blank" rel="noopener noreferrer">${post.title}</a>
+      <button type="button" id="modalShowBtn" class="btn btn-outline-primary btn-sm" data-id="${post.id}" data-bs-target="#modal">${i18nInstance.t('view')}</button>`;
       const fontWeight = post.visited === false ? 'fw-bold' : 'fw-normal';
       const link = postLi.querySelector('a');
       link.classList.add(fontWeight);
@@ -154,9 +139,6 @@ export default (state, elements, i18nInstance) => {
 
         case 'Modal':
           handleModal();
-          break;
-
-        case 'Updating':
           break;
 
         case 'Error':

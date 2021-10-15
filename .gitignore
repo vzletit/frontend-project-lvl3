@@ -5,3 +5,4 @@ dists
 .env.development
 /__fixtures__/
 /__tests__/
+coverage
