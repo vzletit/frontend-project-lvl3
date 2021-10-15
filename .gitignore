@@ -1,0 +1,7 @@
+/node_modules/
+*.log
+dists
+/dist/
+.env.development
+/__fixtures__/
+/__tests__/

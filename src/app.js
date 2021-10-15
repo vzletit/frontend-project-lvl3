@@ -6,18 +6,21 @@ import validate from "./validator.js";
 import parse from "./parser.js";
 import load from "./XMLloader.js";
 import updatePosts from "./updatePosts.js";
+import "bootstrap/dist/css/bootstrap.css";
+
 
 export default () => {
+  
   // Init app
   const i18nInstance = i18n.createInstance();
-  i18nInstance.init({
+  i18nInstance.init({ 
     lng: "ru",
     debug: false,
     resources,
   });
 
   const elements = {
-    form: document.querySelector('form'),
+    form: document.querySelector("form"),
     input: document.querySelector("input"),
     posts: document.querySelector("#posts"),
     feeds: document.querySelector("#feeds"),

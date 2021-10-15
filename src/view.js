@@ -1,5 +1,8 @@
 import onChange from "on-change";
-import { Modal } from "bootstrap";
+import {Modal} from 'bootstrap';
+//import "bootstrap/dist/js/bootstrap.js";
+
+
 
 export default (state, elements, i18nInstance) => {
   const renderModal = () => {

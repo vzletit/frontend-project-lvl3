@@ -9,7 +9,7 @@ build:
 	NODE_ENV=production npx webpack
 
 test:
-	npm test
+	npm test -- --coverage --coverageProvider=v8
 
 lint:
 	npx eslint .

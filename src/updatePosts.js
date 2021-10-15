@@ -2,6 +2,7 @@ import load from "./XMLloader.js";
 import parse from "./parser.js";
 import { differenceBy, uniqueId } from "lodash";
 
+
 const updatePosts = (state) => {
   const updateProcess = () => {
     state.currentState = "Updating";
