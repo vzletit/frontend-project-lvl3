@@ -17,8 +17,8 @@ export default () => {
   });
 
   const elements = {
+    form: document.querySelector('form'),
     input: document.querySelector("input"),
-    submitBtn: document.querySelector("button[type=submit]"),
     posts: document.querySelector("#posts"),
     feeds: document.querySelector("#feeds"),
     modalTitle: document.querySelector("#modalTitle"),
@@ -87,6 +87,6 @@ export default () => {
     }
   };
 
-  elements.submitBtn.addEventListener("click", handleSubmit);
+  elements.form.addEventListener("submit", handleSubmit);
   elements.posts.addEventListener("click", handleModal);
 };
